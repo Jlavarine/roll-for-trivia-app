@@ -105,6 +105,9 @@ export default function TriviaScreen({ navigation }: Props) {
           <TouchableOpacity onPress={() => navigation.navigate('Leaderboard')} style={styles.btn}>
             <Text style={styles.btnText}>See Leaderboard</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Answers')} style={styles.btn}>
+            <Text style={styles.btnText}>See Correct Answers</Text>
+          </TouchableOpacity>
         </View>
       )}
     </View>

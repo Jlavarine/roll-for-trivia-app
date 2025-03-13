@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import TriviaScreen from './screens/TriviaScreen';
 import LeaderboardScreen from './screens/LeaderboardScreen';
+import AnswersScreen from './screens/AnswersScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { RootStackParamList } from './types/navigation'; 
 
@@ -19,6 +20,7 @@ export default function App() {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Trivia" component={TriviaScreen} />
           <Stack.Screen name="Leaderboard" component={LeaderboardScreen} />
+          <Stack.Screen name="Answers" component={AnswersScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
