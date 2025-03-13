@@ -21,11 +21,16 @@ export default function LeaderboardScreen({ navigation }: Props) {
             const dateKey = getDateKey();
             const storedLeaderboard = await AsyncStorage.getItem('leaderboard');
             let parsedLeaderboard: LeaderboardEntry[] = storedLeaderboard ? JSON.parse(storedLeaderboard) : [];
-            parsedLeaderboard = parsedLeaderboard.filter(entry => entry.date === dateKey);
+        
+            parsedLeaderboard = parsedLeaderboard.filter(entry => {
+                const isMatch = entry.date === dateKey;
+                return isMatch;
+            });
+        
             parsedLeaderboard.sort((a, b) => b.score - a.score);
             setLeaderboard(parsedLeaderboard);
         };
-
+        
         loadLeaderboard();
     }, []);
 

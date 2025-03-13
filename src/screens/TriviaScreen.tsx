@@ -71,15 +71,16 @@ export default function TriviaScreen({ navigation }: Props) {
   };
 
   const saveScore = async (finalScore: number) => {
-    const dateKey = `score-${getDateKey()}`;
-    await AsyncStorage.setItem(dateKey, finalScore.toString());
+    const dateKey = getDateKey();
+    const playerName = (await AsyncStorage.getItem('currentUser')) || 'Anonymous';
+    let leaderboard = JSON.parse((await AsyncStorage.getItem('leaderboard')) || '[]');
 
-    const playerName = (await AsyncStorage.getItem('playerName')) || 'Anonymous';
-    const leaderboard = JSON.parse((await AsyncStorage.getItem('leaderboard')) || '[]');
+    leaderboard = leaderboard.filter((entry: Entry) => !(entry.name === playerName && entry.date === dateKey));
 
-    leaderboard.push({ name: playerName, score: finalScore, date: getDateKey() });
+    leaderboard.push({ name: playerName, score: finalScore, date: dateKey });
     await AsyncStorage.setItem('leaderboard', JSON.stringify(leaderboard));
-  };
+};
+
 
   if (loading) {
     return <ActivityIndicator size="large" color="#4a90e2" style={styles.loader} />;
